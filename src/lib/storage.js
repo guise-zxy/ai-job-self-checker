@@ -6,7 +6,31 @@ const STORAGE_KEYS = {
   ARCHIVE: 'ai-job-checker-archive',
 };
 
+/** 获取环境变量中配置的默认 API Key（NEXT_PUBLIC_ 前缀会在构建时内联） */
+export function getDefaultApiKey() {
+  try {
+    if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_DEEPSEEK_API_KEY) {
+      return process.env.NEXT_PUBLIC_DEEPSEEK_API_KEY;
+    }
+  } catch {
+    // SSR 环境下 process.env 可能不可用
+  }
+  return null;
+}
+
+/** 判断是否配置了固定 Key */
+export function hasFixedKey() {
+  return !!getDefaultApiKey();
+}
+
+/**
+ * 获取 API Key，优先级：
+ * 1. 环境变量 NEXT_PUBLIC_DEEPSEEK_API_KEY（固定 Key）
+ * 2. localStorage 用户自填 Key
+ */
 export function getApiKey() {
+  const envKey = getDefaultApiKey();
+  if (envKey) return envKey;
   if (typeof window === 'undefined') return null;
   return localStorage.getItem(STORAGE_KEYS.API_KEY);
 }

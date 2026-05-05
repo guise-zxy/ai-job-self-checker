@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import ApiKeyInput from './ApiKeyInput';
 import { useEffect, useState } from 'react';
-import { getApiKey } from '@/src/lib/storage';
+import { getApiKey, hasFixedKey } from '@/src/lib/storage';
 
 export default function Layout({ children }) {
   const pathname = usePathname();
@@ -13,7 +13,7 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     const key = getApiKey();
-    setHasKey(!!key);
+    setHasKey(!!key || hasFixedKey());
   }, []);
 
   const navLinks = [
