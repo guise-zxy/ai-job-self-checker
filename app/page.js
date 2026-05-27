@@ -168,6 +168,32 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Resume Download */}
+      <section style={{ maxWidth: 800, margin: '0 auto 48px' }}>
+        <div className="result-card" style={{
+          background: 'linear-gradient(135deg, #faf5ff 0%, #f0f9ff 100%)',
+          borderColor: '#e0e7ff',
+          textAlign: 'center',
+        }}>
+          <h3 className="result-card-title">👤 关于作者</h3>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: 16, fontSize: '0.95rem', lineHeight: 1.8 }}>
+            张馨怡 · 深圳技术大学物联网工程专业 · 目标腾讯 S3 职能线 AI-HR 培训生岗
+          </p>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: 20, fontSize: '0.88rem' }}>
+            技术栈：Next.js / TypeScript / C++ / 嵌入式开发 · 拥有个人作品集与 AI 项目实战经验
+          </p>
+          <a
+            href="/简历.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary btn-lg"
+            style={{ textDecoration: 'none', display: 'inline-flex' }}
+          >
+            📄 查看简历
+          </a>
+        </div>
+      </section>
+
       {/* Growth Archive */}
       <section style={{ maxWidth: 800, margin: '0 auto' }}>
         <GrowthArchive />
